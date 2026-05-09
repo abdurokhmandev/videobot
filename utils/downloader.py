@@ -399,12 +399,20 @@ class Downloader:
 
     async def get_info(self, url: str) -> dict:
         """Yuklab olmay faqat ma'lumot oladi"""
-        opts = {
+        platform = detect_platform(url)
+        
+        if platform == "instagram":
+            opts = _ig_opts("")
+        else:
+            opts = dict(_COMMON_OPTS)
+            
+        opts.update({
             "quiet": True,
             "no_warnings": True,
             "skip_download": True,
             "noplaylist": True,
-        }
+        })
+        
         try:
             info = await self._run_async(self._run_ydl_nodown, url, opts)
             return info or {}
