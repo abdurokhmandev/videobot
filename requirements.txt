@@ -1,0 +1,5 @@
+aiogram>=2.25.1
+yt-dlp
+python-dotenv
+aiofiles>=23.2.1
+aiohttp>=3.11.0
